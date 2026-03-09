@@ -1,4 +1,18 @@
+<?php
+
+/**
+ * The header
+ *
+ * This is the template that displays all of the <head> section and everything up until <div id="content">
+ *
+ * @link https://developer.wordpress.org/themes/basics/template-files/#template-partials
+ *
+ * @package nathalie_mota
+ */
+?>
+
 <!DOCTYPE html>
+
 <html <?php language_attributes(); ?>>
 
 <head>
@@ -6,3 +20,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <?php wp_head(); ?>
 </head>
+
+<body <?php body_class(); ?>>
+
+  <header class="site-header">
+    <div class="container">
+
+      <!-- Logo -->
+      <a href="<?php echo esc_url(home_url('/')); ?>" class="site-logo">
+        <img src="<?php echo get_template_directory_uri(); ?>/images/Logo.png" alt="Nathalie Mota">
+      </a>
+
+      <!-- Menu principal -->
+      <nav class="main-nav">
+        <?php
+        wp_nav_menu([
+          'theme_location' => 'main-menu',
+          'container'      => false,
+
+        ]);
+        ?>
+      </nav>
+
+    </div>
+  </header>
