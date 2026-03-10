@@ -1,0 +1,49 @@
+/* ------------------------------
+  HEADER
+------------------------------ */
+
+header {
+  background: #fff;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+.site-header {
+  padding: 20px 0;
+  max-height: 80px;
+}
+
+.site-header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.site-logo img {
+  max-width: 216px;
+  max-height: 14px;
+  width: auto;
+}
+
+/* Menu principal */
+.main-nav ul {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+}
+
+.main-nav a {
+  font-family: SpaceMono, sans-serif;
+  font-style: normal;
+  text-decoration: none;
+  color: rgb(0, 0, 0);
+  font-weight: 400;
+  size: 16px;
+}
+
+.main-nav a:hover {
+  color: #888;
+}
