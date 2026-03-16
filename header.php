@@ -41,6 +41,14 @@
         ]);
         ?>
       </nav>
+      <!-- Bouton burger -->
+      <div class="button-container">
+        <button class="burger" aria-label="Menu mobile">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
 
     </div>
   </header>

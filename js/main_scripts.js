@@ -40,3 +40,28 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
 });
+
+// Menu mobile
+document.addEventListener('DOMContentLoaded', () => {
+    const burger = document.querySelector('.burger');
+    const nav = document.querySelector('.main-nav');
+    const links = document.querySelectorAll('.main-nav a');
+    console.log('burger =', burger);
+
+    if (!burger || !nav) return; // sécurité
+
+    // Ouvrir / fermer le menu
+    burger.addEventListener('click', () => {
+        burger.classList.toggle('active');
+        nav.classList.toggle('open');
+    });
+
+    // Fermer le menu quand on clique sur un lien
+    links.forEach(link => {
+        link.addEventListener('click', () => {
+            nav.classList.remove('open');
+            burger.classList.remove('active');
+        });
+    });
+
+});
