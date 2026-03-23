@@ -40,6 +40,8 @@ add_action('after_setup_theme', 'nathalie_mota_setup');
  */
 function nathalie_mota_assets()
 {
+  // Chargement jQuery
+  wp_enqueue_script('jquery');
 
   //Appel des polices Google Fonts.css
   wp_enqueue_style(
@@ -81,3 +83,15 @@ function nathalie_mota_customizer_preview()
   );
 }
 add_action('customize_preview_init', 'nathalie_mota_customizer_preview');
+
+//chargement des fonts Font Awesome
+function theme_enqueue_fontawesome()
+{
+  wp_enqueue_style(
+    'fontawesome',
+    'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css',
+    array(),
+    '6.5.0'
+  );
+}
+add_action('wp_enqueue_scripts', 'theme_enqueue_fontawesome');

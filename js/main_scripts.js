@@ -1,67 +1,108 @@
-//gestion de la modal
-document.addEventListener("DOMContentLoaded", () => {
+// --------------------------------------
+// GESTION DE LA MODAL
+// --------------------------------------
+jQuery(document).ready(function($) {
 
-    const modal = document.getElementById("contact-modal");
-    const closeBtn = document.querySelector(".close-modal");
+    const modal = $('#contact-modal');
+    const closeBtn = $('.close-modal');
+    
 
-    // OUVERTURE de la modale quand on clique sur "Contact"
-    document.querySelectorAll(".open-contact-modal").forEach(link => {
-        link.addEventListener("click", (e) => {
-            e.preventDefault();
-            modal.style.display = "flex";  // important pour centrer
-            modal.style.opacity = 1;
-        });
+    // Préremplissage de la référence
+    $('.open-contact-modal, .button-contact').on('click', function () {
+      const ref = $(this).data('ref');
+
+    // Remplit le champ REF.PHOTO
+    $('#ref-photo').val(ref);
+
+    // OUVERTURE de la modale
+    $('.open-contact-modal, .button-contact').on('click', function(e) {
+        e.preventDefault();
+
+    // Ouvre la modal
+    $('#contact-modal').addClass('open');
+});
+
+    // Affichage de la modal
+    modal.css({
+        display: 'flex',
+        opacity: 1
+    });
     });
 
-    // Fonction fadeOut pour faire disparaître la modal en douceur
+    // Fonction fadeOut
     function fadeOut(element) {
-        element.style.opacity = 1;
+        element.css('opacity', 1);
 
         const fade = setInterval(() => {
-            element.style.opacity -= 0.05;
+            let currentOpacity = parseFloat(element.css('opacity'));
+            element.css('opacity', currentOpacity - 0.05);
 
-            if (element.style.opacity <= 0) {
+            if (currentOpacity <= 0) {
                 clearInterval(fade);
-                element.style.display = "none";
+                element.css('display', 'none');
             }
         }, 10);
     }
 
-    // fermeture de la modal
-    closeBtn.addEventListener("click", () => {
+    // FERMETURE via la croix
+    closeBtn.on('click', function() {
         fadeOut(modal);
     });
 
-    // fermeture en cliquant en dehors
-    modal.addEventListener("click", (e) => {
-        if (e.target === modal) {
+    // FERMETURE en cliquant en dehors
+    modal.on('click', function(e) {
+        if (e.target === this) {
             fadeOut(modal);
         }
     });
 
 });
 
-// Menu mobile
+
+// --------------------------------------
+// MENU MOBILE
+// --------------------------------------
 document.addEventListener('DOMContentLoaded', () => {
     const burger = document.querySelector('.burger');
     const nav = document.querySelector('.main-nav');
     const links = document.querySelectorAll('.main-nav a');
-    console.log('burger =', burger);
 
-    if (!burger || !nav) return; // sécurité
+    if (!burger || !nav) return;
 
-    // Ouvrir / fermer le menu
     burger.addEventListener('click', () => {
         burger.classList.toggle('active');
         nav.classList.toggle('open');
     });
 
-    // Fermer le menu quand on clique sur un lien
     links.forEach(link => {
         link.addEventListener('click', () => {
             nav.classList.remove('open');
             burger.classList.remove('active');
         });
     });
-
 });
+
+// --------------------------------------
+//affichage de la miniature de l'image suivante dans la navigation dans single photo
+// --------------------------------------
+document.querySelectorAll('.nav-under').forEach(link => {
+  link.addEventListener('mouseenter', () => {
+    const img = link.dataset.preview;
+    if (!img) return;
+
+    const previewContainer = link
+      .closest('.nav-next-preview')
+      .querySelector('.nav-preview-hover');
+
+    previewContainer.innerHTML = `<img src="${img}" alt="">`;
+  });
+
+  link.addEventListener('mouseleave', () => {
+    const previewContainer = link
+      .closest('.nav-next-preview')
+      .querySelector('.nav-preview-hover');
+
+    previewContainer.innerHTML = '';
+  });
+});
+

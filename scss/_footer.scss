@@ -8,6 +8,7 @@ footer {
 
 .site-footer {
   padding: 10px;
+  margin-top: 10px;
   text-align: center;
 }
 
@@ -37,4 +38,20 @@ footer {
 
 .footer-menu a:hover {
   text-decoration: underline;
+}
+
+@media (max-width: 769px) {}
+
+@media (max-width: 400px) {
+  .site-footer {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  .footer-menu {
+    display: flex;
+    flex-direction: column;
+  }
 }
