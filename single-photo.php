@@ -5,15 +5,15 @@ if (have_posts()) :
   while (have_posts()) :
     the_post();
 
-    // Champs personnalisés (SCF)
+    // Champs personnalisés
     $ref   = SCF::get('reference');
     $type  = SCF::get('type');
     $year = get_the_date('Y');
     $title = get_the_title();
 
-    // Image principale (SCF ou image mise en avant)
+    // Image principale (image mise en avant)
     $photo_field = SCF::get('photo_image');
-
+    //recuperation de l'image selon le type de champ (url, id ou array)
     if ($photo_field) {
       if (is_string($photo_field)) {
         $photo_url = $photo_field;
@@ -36,11 +36,11 @@ if (have_posts()) :
     $fmt_name = (!empty($formats) && !is_wp_error($formats)) ? $formats[0]->name : '';
     $cat_slug = (!empty($categories) && !is_wp_error($categories)) ? $categories[0]->slug : '';
 
-    // Navigation (dans la même taxonomie "categorie")
+    // Navigation trié par date et categorie
     $prev = get_previous_post(false, '', 'categorie');
     $next = get_next_post(false, '', 'categorie');
 
-    // Fallback next global si pas de suivant dans la catégorie
+    // Fallback si pas de suivant dans la catégorie
     if (!$next) {
       $next = get_next_post();
     }
@@ -50,7 +50,7 @@ if (have_posts()) :
     $next_img = $next ? get_the_post_thumbnail_url($next->ID, 'medium') : null;
 ?>
 
-    <main class="single-photo container">
+    <main class="single-photo">
       <section class="single-top">
         <div class="single-info">
           <h1 class="single-title"><?php echo esc_html($title); ?></h1>
@@ -161,7 +161,7 @@ if (have_posts()) :
           <?php
           if ($related && $related->have_posts()) :
             while ($related->have_posts()) : $related->the_post();
-              get_template_part('/template-parts/photo-block');
+              get_template_part('template-parts/photo-block');
             endwhile;
             wp_reset_postdata();
           endif;
@@ -175,4 +175,4 @@ if (have_posts()) :
   endwhile;
 endif;
 
-get_footer();
+get_footer(); ?>

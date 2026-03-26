@@ -7,6 +7,18 @@
   justify-content: center;
 }
 
+#contact-modal {
+  display: none;
+  opacity: 0;
+  transition: opacity 0.01s ease;
+}
+
+#contact-modal.open {
+  display: flex;
+  opacity: 1;
+}
+
+
 .modal {
   display: none;
   position: fixed;

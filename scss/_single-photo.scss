@@ -1,6 +1,7 @@
 /* --- Layout global --- */
 .single-photo {
   max-width: 1440px;
+  width: 79.73vw;
   margin: 0 auto;
 }
 
@@ -13,6 +14,14 @@ h1 {
   line-height: 58px;
 }
 
+@media (max-width: 450px) {
+  h1 {
+    font-size: 46px !important;
+    line-height: 48px !important;
+  }
+
+}
+
 /* --- TOP SECTION --- */
 .single-top {
   display: flex;
@@ -20,6 +29,17 @@ h1 {
   align-items: flex-end;
   margin-bottom: 0px;
   margin-top: 80px;
+}
+
+@media (max-width: 450px) {
+  .single-top {
+    width: 70vw;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: flex-start;
+    margin: 0 auto;
+    margin-top: 50px;
+  }
 }
 
 /* --- INFO (colonne gauche) --- */
@@ -44,7 +64,7 @@ h1 {
   letter-spacing: 10%;
   text-transform: uppercase;
   font-size: 14px;
-  margin-bottom: 8px;
+  margin-bottom: 15px;
 }
 
 .single-meta strong {
@@ -75,6 +95,15 @@ h1 {
   margin-top: 0;
 }
 
+@media (max-width: 450px) {
+  .single-contact {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 15px;
+  }
+}
+
 .button-contact {
   display: inline-block;
   width: 272px;
@@ -90,6 +119,14 @@ h1 {
   transition: 0.3s ease;
 }
 
+@media (max-width: 450px) {
+  .button-contact {
+    align-self: center;
+    width: 263px;
+    margin: 16px 0 16px 0;
+  }
+}
+
 .button-contact:hover {
   background: #000000;
   color: #FFFFFF;
@@ -100,6 +137,16 @@ h1 {
   height: 1px;
   background: #000;
   margin-bottom: 0px;
+}
+
+@media (max-width: 450px) {
+
+  .single-sep,
+  .single-sep2 {
+    position: absolute;
+    left: 0;
+    width: 100vw;
+  }
 }
 
 .single-sep2 {
@@ -115,6 +162,13 @@ h1 {
   font-size: 14px;
 }
 
+@media (max-width: 450px) {
+  .single-cta {
+    margin-left: 10vw;
+  }
+}
+
+
 
 /* --- NAVIGATION SECTION --- */
 .single-nav {
@@ -129,6 +183,12 @@ h1 {
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
+}
+
+@media (max-width: 450px) {
+  .nav-row {
+    display: none;
+  }
 }
 
 .nav-next-preview {
@@ -186,11 +246,22 @@ h1 {
 }
 
 
-
-
 /* --- RELATED SECTION --- */
 .single-related {
+  width: 100%;
   margin-top: 80px;
+}
+
+@media (max-width: 450px) {
+  .single-related {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    margin: 0 auto;
+    margin-top: 25px;
+  }
 }
 
 .related-title {
@@ -199,12 +270,25 @@ h1 {
   font-weight: 400;
   margin-bottom: 40px;
   text-transform: uppercase;
+  letter-spacing: 10%;
 }
 
-.related-grid {
+.single-photo .related-grid {
   width: 100%;
   display: grid !important;
   grid-template-columns: repeat(2, 1fr);
-  gap: 30px;
   margin-bottom: 30px;
+}
+
+.single-photo .photo-card {
+  width: 100%;
+}
+
+@media (max-width: 450px) {
+  .single-photo .related-grid {
+    display: grid !important;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 20px;
+    margin-bottom: 15px;
+  }
 }

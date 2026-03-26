@@ -1,3 +1,5 @@
+<div class="footer-sep"></div>
+
 <footer id="colophon" class="site-footer">
   <div class="footer-container">
     <?php
