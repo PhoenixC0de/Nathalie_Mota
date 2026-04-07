@@ -456,10 +456,32 @@ textarea {
 .filters {
   display: flex;
   max-width: 1143px;
-  width: 100%;
+  width: 100vw;
   margin: 0px auto;
 }
 
+@media (max-width: 450px) {
+  .filters {
+    flex-direction: column;
+    align-items: center;
+    gap: 5px !important;
+  }
+  .filter-left,
+  .filter-right {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex: unset !important;
+    width: 100%;
+    gap: 5px !important;
+  }
+  .custom-select-trigger {
+    width: 270px !important;
+  }
+  .custom-options {
+    width: 270px !important;
+  }
+}
 .filter-left {
   display: flex;
   gap: 40px;
@@ -506,7 +528,7 @@ textarea {
 .custom-select .arrow {
   display: flex;
   position: relative;
-  z-index: 1000;
+  z-index: 998;
   width: 11px;
   transition: transform 0.3s ease;
 }
@@ -521,14 +543,14 @@ textarea {
   font-weight: 500;
   line-height: 18px;
   letter-spacing: 3%;
-  width: 260px !important;
+  width: 260px;
   position: absolute;
   top: 42px;
   left: 0;
   background: #fff;
   border-radius: 0px 0px 8px 8px;
   display: none;
-  z-index: 10;
+  z-index: 999;
 }
 
 .custom-select.open .custom-options {
