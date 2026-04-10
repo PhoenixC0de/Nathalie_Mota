@@ -97,10 +97,12 @@ if ($hero_image) {
   ]);
 
   if ($photos->have_posts()) :
+    $index = 0; // Initialisation de l'index pour la lightbox
     while ($photos->have_posts()) : $photos->the_post();
 
       // Appel du template réutilisable
-      get_template_part('template-parts/photo-block');
+      get_template_part('template-parts/photo-block', null, ['index' => $index]);
+      $index++; // Incrémentation pour photo suivante
 
     endwhile;
   else :

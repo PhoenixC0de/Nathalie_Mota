@@ -1,9 +1,18 @@
+<?php
+$index = $args['index'] ?? 0;
+$reference = get_post_meta(get_the_ID(), 'reference', true);
+$terms = get_the_terms(get_the_ID(), 'categorie');
+$categorie_name = (!empty($terms) && !is_wp_error($terms)) ? $terms[0]->name : '';
+
+?>
+
+
 <article class="photo-card">
 
   <a href="<?php the_permalink(); ?>" class="photo-card-link">
 
     <div class="photo-card-image">
-      <?php echo get_the_post_thumbnail(get_the_ID(), 'medium'); ?>
+      <?php echo get_the_post_thumbnail(get_the_ID(), 'full'); ?>
     </div>
 
     <!-- Hover -->
@@ -11,7 +20,12 @@
       <span class="hover-eye">
         <img src="<?php echo get_template_directory_uri(); ?>/images/Icon_eye.png" alt="">
       </span>
-      <span class="hover-fullscreen">
+      <!-- on ajoute les data dans le bouton -->
+      <span class="hover-fullscreen"
+        data-index="<?php echo $index; ?>"
+        data-reference="<?php echo esc_attr($reference); ?>"
+        data-categorie="<?php echo esc_attr($categorie_name); ?>">
+
         <img src="<?php echo get_template_directory_uri(); ?>/images/icon_expand.png" alt="">
       </span>
       <span class="hover-title"><?php the_title(); ?></span>

@@ -168,3 +168,13 @@ function filter_photos_ajax()
 }
 add_action('wp_ajax_filter_photos', 'filter_photos_ajax');
 add_action('wp_ajax_nopriv_filter_photos', 'filter_photos_ajax');
+
+
+//chargement du js de la lightbox
+wp_enqueue_script(
+  'lightbox',
+  get_template_directory_uri() . '/js/lightbox.js',
+  ['jquery'],
+  null,
+  true
+);

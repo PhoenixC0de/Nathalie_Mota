@@ -1,0 +1,159 @@
+/* --- LIGHTBOX WRAPPER --- */
+.lightbox {
+  width: 100%;
+  height: auto;
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+}
+
+.lightbox.open {
+  display: block;
+}
+
+/* --- OVERLAY --- */
+.lightbox-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 1;
+}
+
+/* --- CONTENU SCROLLABLE --- */
+.lightbox-content {
+  position: fixed;
+  inset: 0;
+  z-index: 2;
+  overflow: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (max-width: 450px) {
+  .lightbox-content {
+    overflow: hidden;
+  }
+}
+
+/* --- IMAGE CONTAINER --- */
+.lightbox-img-container {
+  width: 670px;
+  height: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* --- IMAGE FULL QUALITÉ + SCROLLABLE --- */
+#lightbox-img {
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  max-height: none;
+  object-fit: contain;
+  display: block;
+}
+
+/* --- BOUTON FERMETURE --- */
+.lightbox-close {
+  position: fixed;
+  top: 55px;
+  right: 140px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 3;
+  padding: 0;
+}
+
+@media (max-width: 450px) {
+  .lightbox-close {
+    top: 150px;
+    right: 40px;
+  }
+}
+
+
+
+/* --- NAVIGATION --- */
+.lightbox-nav {
+  pointer-events: none;
+}
+
+.lightbox-arrow {
+  width: 92px;
+  height: 100%;
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  pointer-events: auto;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+}
+
+@media (max-width: 450px) {
+  .arrow-svg {
+    display: none;
+  }
+
+  .lightbox-arrow {
+    width: 40px;
+  }
+
+  #lightbox-prev {
+    left: 0px !important;
+  }
+
+  #lightbox-next {
+    right: 0px !important;
+  }
+}
+
+#lightbox-prev {
+  left: 43px;
+}
+
+#lightbox-next {
+  right: 43px;
+}
+
+/* --- INFOS --- */
+.lightbox-infos {
+  position: absolute;
+  top: 85%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50%;
+  max-width: 1200px;
+  display: flex;
+  justify-content: center;
+  color: white;
+  z-index: 3;
+}
+
+#lightbox-title {
+  display: flex;
+  justify-content: space-between;
+  width: 50%;
+}
+
+@media (max-width: 450px) {
+  #lightbox-title {
+    width: 100%;
+  }
+}
+
+.ref,
+.cat {
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  text-transform: uppercase;
+}

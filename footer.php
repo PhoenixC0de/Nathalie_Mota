@@ -13,6 +13,8 @@
 </footer>
 
 <?php get_template_part('template-parts/modal_contact'); ?>
+<?php get_template_part('template-parts/lightbox'); ?>
+
 
 <?php wp_footer(); ?>
 </body>
