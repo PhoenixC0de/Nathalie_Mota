@@ -113,6 +113,7 @@ jQuery(function ($) {
         let button = $(this);
         let page = parseInt(button.attr('data-page'));
         let max = parseInt(button.attr('data-max'));
+        let order = document.querySelector('[data-filter="order"]')?.dataset.value || 'DESC';
 
         $.ajax({
             url: ajax_params.ajax_url,
@@ -120,19 +121,21 @@ jQuery(function ($) {
             data: {
                 action: 'load_more_photos',
                 page: page + 1,
-                order: document.querySelector('[data-filter="order"]')?.dataset.value || 'DESC'
+                order: order
             },
             success: function (response) {
               // Si aucune photo n'est renvoyée on cache le bouton
               if (!response || response.trim() === "") {
                   button.hide();
                   loading = false;
+                  console.log('Aucune photo supplémentaire à charger.');
                   return;
               }
 
               // Sinon on ajoute les photos
               $('.photo-gallery').append(response);
               button.attr('data-page', page + 1);
+              console.log(`Page ${page + 1} chargée.`);
 
               // Si on a atteint la dernière page on cache le bouton
               if (page + 1 >= max) {
@@ -140,6 +143,7 @@ jQuery(function ($) {
               }
 
               loading = false;
+              console.log('Chargement terminé.');
           }
 
         });
@@ -167,11 +171,11 @@ document.querySelectorAll('.custom-select').forEach(select => {
     // RESET : si on clique sur l'option vide
     if (value === "") {
       span.textContent = trigger.dataset.placeholder;
+      select.dataset.value = "";
     } else {
       span.textContent = option.textContent;
+      select.dataset.value = value;
     }
-
-    select.dataset.value = value;
     select.classList.remove('open');
 
     // appel AJAX
@@ -193,10 +197,6 @@ function filterPhotos() {
   let format   = document.querySelector('[data-filter="format"]')?.dataset.value || '';
   let order    = document.querySelector('[data-filter="order"]')?.dataset.value || '';
   // Un filtre est considéré comme actif si au moins un des critères est sélectionné
-  if (category === '' && format === '' && order === '') {
-    location.reload();
-    return;
-  }
 
   jQuery.ajax({
     url: ajax_params.ajax_url,
@@ -224,8 +224,10 @@ function filterPhotos() {
 
     // Si seulement tri → bouton toujours visible
     if (order !== '') {
-        button.show();
-        return;
+    button.attr('data-page', 1);
+    button.attr('data-max', data.max);
+    button.show();
+    return;
 }
 
     // Sinon → pagination normale

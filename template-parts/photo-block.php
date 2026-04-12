@@ -12,7 +12,10 @@ $categorie_name = (!empty($terms) && !is_wp_error($terms)) ? $terms[0]->name : '
   <a href="<?php the_permalink(); ?>" class="photo-card-link">
 
     <div class="photo-card-image">
-      <?php echo get_the_post_thumbnail(get_the_ID(), 'full'); ?>
+      <?php echo get_the_post_thumbnail(get_the_ID(), 'full', [
+        'loading' => 'lazy',
+        'fetchpriority' => 'low'
+      ]); ?>
     </div>
 
     <!-- Hover -->

@@ -12,37 +12,50 @@ jQuery(function ($) {
   let photos = [];
   let currentIndex = 0;
 
-  // Récupère toutes les photos de la galerie
-  $('.photo-card-hover').each(function (index) {
-    const img =$(this).closest('.photo-card').find('.photo-card-image img').attr('src');
-    const reference = $(this).find('.hover-fullscreen').data('reference');
-    const categorie = $(this).find('.hover-fullscreen').data('categorie');
+  // Fonction qui construit le tableau des photos
+function buildPhotosArray() {
+    photos = [];
 
-    //on stocke les infos dans un tableau pour la lightbox
-    photos.push({
-      src: img,
-      reference: reference,
-      categorie: categorie,
+    $('.photo-card-hover').each(function (index) {
+
+        const img = $(this).closest('.photo-card').find('.photo-card-image img').attr('src');
+        const reference = $(this).find('.hover-fullscreen').data('reference');
+        const categorie = $(this).find('.hover-fullscreen').data('categorie');
+
+        photos.push({
+            src: img,
+            reference: reference,
+            categorie: categorie,
+        });
+
+        // Mise à jour de l'index
+        $(this).find('.hover-fullscreen').attr('data-index', index);
     });
-    $(this).find('.hover-fullscreen').attr('data-index', index);
+}
 
-    // Ajoute l’index sur l’icône fullscreen
-    $(this).find('.hover-fullscreen').attr('data-index', index);
-  });
+// Appel initial
+buildPhotosArray();
 
-  // OUVERTURE
-  $('.hover-fullscreen').on('click', function (e) {
-        e.preventDefault();
-        e.stopPropagation();
+//  OUVERTURE lightbox
+$(document).on('click', '.hover-fullscreen', function (e) {
+    e.preventDefault();
+    e.stopPropagation();
 
-        currentIndex = parseInt($(this).data('index'));
+    currentIndex = parseInt($(this).data('index'));
+    updateLightbox();
+    $('#lightbox').addClass('open');
+});
 
-        console.log("OPEN LIGHTBOX INDEX =", currentIndex);
+//  Reconstruire après AJAX (load more + filtres)
+$(document).ajaxSuccess(function (event, xhr, settings) {
+    if (
+        settings.data.includes("action=filter_photos") ||
+        settings.data.includes("action=load_more_photos")
+    ) {
+        buildPhotosArray();
+    }
+});
 
-        updateLightbox();
-
-        $('#lightbox').addClass('open');
-    });
 
   // FERMETURE
   function closeLightbox() {

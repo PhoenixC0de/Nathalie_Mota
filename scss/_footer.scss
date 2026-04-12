@@ -4,15 +4,12 @@
 .footer-sep {
   position: relative;
   left: 0;
-  max-width: 1440px;
-  //width: 100vw;
   height: 1px;
   background: #000;
   margin-top: 25px;
 }
 
 .site-footer {
-  max-width: 1440px;
   width: 100%;
   background: #fff;
   padding: 10px;
@@ -48,9 +45,9 @@
   text-decoration: underline;
 }
 
-@media (max-width: 769px) {}
+@media (max-width: 769px) {
 
-@media (max-width: 450px) {
+  //@media (max-width: 450px) {
   .site-footer {
     display: flex;
     text-align: center;

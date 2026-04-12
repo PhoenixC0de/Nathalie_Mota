@@ -13,7 +13,7 @@ if (have_posts()) :
 
     // Image principale (image mise en avant)
     $photo_field = SCF::get('photo_image');
-    //recuperation de l'image selon le type de champ (url, id ou array)
+    //recuperation de l'image selon le type de champ 
     if ($photo_field) {
       if (is_string($photo_field)) {
         $photo_url = $photo_field;
@@ -53,7 +53,7 @@ if (have_posts()) :
     <main class="single-photo">
       <section class="single-top">
         <div class="single-info">
-          <h1 class="single-title"><?php echo esc_html($title); ?></h1>
+          <h2 class="single-title"><?php echo esc_html($title); ?></h2>
 
           <ul class="single-meta">
             <?php if ($ref): ?>
@@ -155,7 +155,7 @@ if (have_posts()) :
       ?>
 
       <section class="single-related">
-        <h2 class="related-title">Vous aimerez aussi</h2>
+        <h3 class="related-title">Vous aimerez aussi</h3>
 
         <div class="related-grid">
           <?php

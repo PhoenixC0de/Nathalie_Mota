@@ -49,7 +49,7 @@ function nathalie_mota_assets()
     filemtime(get_template_directory() . '/style.css')
   );
 
-  // ✔ On charge le JS UNE SEULE FOIS
+  //  On charge le JS 
   wp_enqueue_script(
     'nathalie-mota-script',
     get_template_directory_uri() . '/js/main_scripts.js',
@@ -58,13 +58,11 @@ function nathalie_mota_assets()
     true
   );
 
-  // ✔ On localise ajax_params sur le BON script
+  //  On localise ajax_params sur le BON script
   wp_localize_script('nathalie-mota-script', 'ajax_params', [
     'ajax_url' => admin_url('admin-ajax.php'),
   ]);
 }
-add_action('wp_enqueue_scripts', 'nathalie_mota_assets');
-
 
 // Font Awesome
 function theme_enqueue_fontawesome()
@@ -73,7 +71,17 @@ function theme_enqueue_fontawesome()
     'fontawesome',
     'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css'
   );
+
+  //chargement du js de la lightbox
+  wp_enqueue_script(
+    'lightbox',
+    get_template_directory_uri() . '/js/lightbox.js',
+    ['jquery'],
+    filemtime(get_template_directory() . '/js/lightbox.js'),
+    true
+  );
 }
+add_action('wp_enqueue_scripts', 'nathalie_mota_assets');
 add_action('wp_enqueue_scripts', 'theme_enqueue_fontawesome');
 
 
@@ -121,7 +129,7 @@ function filter_photos_ajax()
 
   $args = [
     'post_type'      => 'photo',
-    'posts_per_page' => $is_filtered ? -1 : 8,
+    'posts_per_page' => ($category || $format) ? -1 : 8,
     'paged'          => 1,
     'order'          => $order,
     'orderby'        => 'date',
@@ -160,7 +168,7 @@ function filter_photos_ajax()
   // On renvoie JSON
   echo json_encode([
     'html' => $html,
-    'max'  => 1 // Pas de pagination dans ce cas, on affiche tout
+    'max'  => ($category || $format) ? 1 : $query->max_num_pages // Pas de pagination dans ce cas, on affiche tout
   ]);
 
   wp_reset_postdata();
@@ -168,13 +176,3 @@ function filter_photos_ajax()
 }
 add_action('wp_ajax_filter_photos', 'filter_photos_ajax');
 add_action('wp_ajax_nopriv_filter_photos', 'filter_photos_ajax');
-
-
-//chargement du js de la lightbox
-wp_enqueue_script(
-  'lightbox',
-  get_template_directory_uri() . '/js/lightbox.js',
-  ['jquery'],
-  null,
-  true
-);

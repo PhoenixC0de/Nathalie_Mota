@@ -1,21 +1,21 @@
 /* --- Layout global --- */
-.single-photo {
+.single-photo main {
   max-width: 1440px;
   width: 79.73vw;
   margin: 0 auto;
 }
 
-h1 {
+h2 {
   font-family: 'SpaceMono', sans-serif;
-  font-size: 66px !important;
+  font-size: 66px;
   font-weight: 400 !important;
   text-transform: uppercase;
   font-style: italic;
   line-height: 58px;
 }
 
-@media (max-width: 450px) {
-  h1 {
+@media (max-width: 1000px) {
+  h2 {
     font-size: 46px !important;
     line-height: 48px !important;
   }
@@ -143,9 +143,9 @@ h1 {
 
   .single-sep,
   .single-sep2 {
+    width: 100%;
     position: absolute;
     left: 0;
-    //width: 100vw;
   }
 }
 
@@ -185,7 +185,7 @@ h1 {
   align-items: flex-end;
 }
 
-@media (max-width: 450px) {
+@media (max-width: 650px) {
   .nav-row {
     display: none;
   }
@@ -218,6 +218,8 @@ h1 {
   width: 81px;
   height: 71px;
   margin-top: 10px;
+  object-fit: cover;
+
 
 }
 

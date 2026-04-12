@@ -53,14 +53,13 @@ h3 {
 header {
   background: #fff;
   position: fixed;
-  max-width: 1440px;
   left: 0;
-  width: 100%;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.0901960784);
   z-index: 1000;
 }
 
 .site-header {
+  width: 100vw;
   padding: 20px 0;
   height: 72px;
 }
@@ -123,9 +122,9 @@ header {
 }
 
 /* ------------------------------
-  MOBILE
+  MOBILE RESPONSIVE
 ------------------------------ */
-@media (max-width: 450px) {
+@media (max-width: 650px) {
   :root {
     --header-height: 72px;
   }
@@ -209,14 +208,12 @@ header {
 .footer-sep {
   position: relative;
   left: 0;
-  max-width: 1440px;
   height: 1px;
   background: #000;
   margin-top: 25px;
 }
 
 .site-footer {
-  max-width: 1440px;
   width: 100%;
   background: #fff;
   padding: 10px;
@@ -252,7 +249,7 @@ header {
   text-decoration: underline;
 }
 
-@media (max-width: 450px) {
+@media (max-width: 769px) {
   .site-footer {
     display: flex;
     text-align: center;
@@ -400,7 +397,7 @@ textarea {
 .hero_image {
   position: relative;
   width: 100%;
-  height: 962px;
+  height: 90vh;
   margin-top: var(--header-height);
   margin-bottom: 30px;
   display: flex;
@@ -413,7 +410,7 @@ textarea {
 
 .hero_title {
   font-family: "SpaceMono", sans-serif;
-  font-size: 96px !important;
+  font-size: 96px;
   font-weight: 700 !important;
   font-style: italic;
   color: transparent;
@@ -425,18 +422,18 @@ textarea {
   --header-height: 72px;
 }
 
-@media (max-width: 769px) {
+@media (max-width: 1003px) {
   .hero_image {
     width: 100%;
     height: 500px;
   }
   .hero_title {
-    font-size: 48px;
+    font-size: 48px !important;
     -webkit-text-stroke: 1px #fff;
     letter-spacing: 0%;
   }
 }
-@media (max-width: 450px) {
+@media (max-width: 503px) {
   .hero_image {
     width: 100%;
     height: 255px;
@@ -457,7 +454,7 @@ textarea {
   margin: 0px auto;
 }
 
-@media (max-width: 450px) {
+@media (max-width: 836px) {
   .filters {
     flex-direction: column;
     align-items: center;
@@ -603,23 +600,23 @@ textarea {
   }
 }
 /* --- Layout global --- */
-.single-photo {
+.single-photo main {
   max-width: 1440px;
   width: 79.73vw;
   margin: 0 auto;
 }
 
-h1 {
+h2 {
   font-family: "SpaceMono", sans-serif;
-  font-size: 66px !important;
+  font-size: 66px;
   font-weight: 400 !important;
   text-transform: uppercase;
   font-style: italic;
   line-height: 58px;
 }
 
-@media (max-width: 450px) {
-  h1 {
+@media (max-width: 1000px) {
+  h2 {
     font-size: 46px !important;
     line-height: 48px !important;
   }
@@ -741,6 +738,7 @@ h1 {
 @media (max-width: 450px) {
   .single-sep,
   .single-sep2 {
+    width: 100%;
     position: absolute;
     left: 0;
   }
@@ -778,7 +776,7 @@ h1 {
   align-items: flex-end;
 }
 
-@media (max-width: 450px) {
+@media (max-width: 650px) {
   .nav-row {
     display: none;
   }
@@ -809,6 +807,7 @@ h1 {
   width: 81px;
   height: 71px;
   margin-top: 10px;
+  object-fit: cover;
 }
 
 .nav-under {
@@ -882,8 +881,8 @@ h1 {
 }
 /* --- Photo card --- */
 .photo-card {
-  width: 564px;
-  height: 495px;
+  max-width: 564px;
+  max-height: 495px;
   overflow: hidden;
 }
 
@@ -917,7 +916,7 @@ h1 {
 /** photo gallery */
 .photo-gallery {
   display: grid;
-  grid-template-columns: repeat(2, 564px);
+  grid-template-columns: repeat(2, 1fr);
   justify-content: center;
   gap: 15px;
   padding: 30px 0;
